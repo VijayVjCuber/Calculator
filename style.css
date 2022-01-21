@@ -64,3 +64,31 @@ section{
 .material-icons{
     margin-top: 5px;
 }
+
+
+.operator{
+    background-color: #4f666a;
+}
+
+.nums{
+    background-color: darkgray;
+}
+
+.erase{
+    color: red;
+}
+
+.equals{
+    background-color: green;
+}
+
+
+@media screen and (max-width: 900px){
+    section{
+        width: 80vw;
+    }
+    #wrapper{
+        grid-template-columns: repeat(4, 17vw);
+        grid-template-rows: repeat(4, 15vh);
+    }
+}
