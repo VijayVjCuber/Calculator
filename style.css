@@ -63,6 +63,7 @@ section{
 
 .material-icons{
     margin-top: 5px;
+    color: darkred;
 }
 
 
@@ -79,7 +80,7 @@ section{
 }
 
 .equals{
-    background-color: green;
+    background-color: darkseagreen;
 }
 
 
