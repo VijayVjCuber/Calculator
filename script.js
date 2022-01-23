@@ -24,6 +24,7 @@ let indvnumbers="";
 let numbers = [];
 let operators =[];
 let lastoperator = "";
+let lastbutton = "";
 let total = 0;
 
 
@@ -35,13 +36,16 @@ function clickFunction(button){
         numbers.length=0;
         operators.length=0;
         lastoperator="";
+        lastbutton="";
         total=0;
     }
     else{
         if(disp.innerText==="0"){
             disp.innerText="";
         }
+        //ignoring to display operators if operators pressed continuosly
         disp.innerText+=button.innerText;
+
         if(button.innerText==="="){
             let j=0;
             numbers.push(parseInt(indvnumbers));
@@ -72,21 +76,22 @@ function clickFunction(button){
             numbers.length=0;
             operators.length=0;
             lastoperator="";
+            lastbutton="";
             indvnumbers=total.toString();
             total=0;
         }
-        else if(button.innerText==="+"||button.innerText==="-"||button.innerText==="x"||button.innerText==="/"){
+        else if((button.innerText==="+"||button.innerText==="-"||button.innerText==="x"||button.innerText==="/")&&(lastbutton!="operator")){
             operators.push(button.innerText);
             numbers.push(parseInt(indvnumbers));
             indvnumbers="";
+            lastbutton="operator";
+            lastoperator=button.innerText;
         }
         else{
             indvnumbers+=button.innerText;
+            lastbutton="";
             // numbers.push(parseInt(button.innerText));
         }
-        console.log("End Operator: "+operators);
-        console.log("end num: "+indvnumbers);
-        console.log("End numbers: "+numbers);
     }
 
 }
@@ -102,6 +107,56 @@ button7.onclick = ()=> clickFunction(button7);
 button8.onclick = ()=> clickFunction(button8);
 button9.onclick = ()=> clickFunction(button9);
 button0.onclick = ()=> clickFunction(button0);
+document.addEventListener('keydown', function(event) {
+    if(event.keyCode === 48) {
+        clickFunction(button0);
+    }
+    else if(event.keyCode === 49) {
+        clickFunction(button1);
+    }
+    else if(event.keyCode === 50) {
+        clickFunction(button2);
+    }
+    else if(event.keyCode === 51) {
+        clickFunction(button3);
+    }
+    else if(event.keyCode === 52) {
+        clickFunction(button4);
+    }
+    else if(event.keyCode === 53) {
+        clickFunction(button5);
+    }
+    else if(event.keyCode === 54) {
+        clickFunction(button6);
+    }
+    else if(event.keyCode === 55) {
+        clickFunction(button7);
+    }
+    else if(event.keyCode === 56) {
+        clickFunction(button8);
+    }
+    else if(event.keyCode === 57) {
+        clickFunction(button9);
+    }
+    else if(event.keyCode === 187) {
+        clickFunction(plus);
+    }
+    else if(event.keyCode === 189) {
+        clickFunction(minus);
+    }
+    else if(event.keyCode === 88) {
+        clickFunction(multiply);
+    }
+    else if(event.keyCode === 191) {
+        clickFunction(divide);
+    }
+    else if(event.keyCode === 13) {
+        clickFunction(equals);
+    }
+    else if(event.keyCode === 8) {
+        clickFunction("clear");
+    }
+});
 
 //operator function calls
 plus.onclick = ()=> clickFunction(plus);
