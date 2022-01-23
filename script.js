@@ -43,13 +43,17 @@ function clickFunction(button){
         if(disp.innerText==="0"){
             disp.innerText="";
         }
-        //ignoring to display operators if operators pressed continuosly
-        disp.innerText+=button.innerText;
-
+        if(!isNaN(parseInt(button.innerText))){
+            disp.innerText+=button.innerText;
+        }
+        else if(lastbutton!="operator"){
+            disp.innerText+=button.innerText;
+        }
         if(button.innerText==="="){
             let j=0;
             numbers.push(parseInt(indvnumbers));
             indvnumbers="";
+            lastbutton="";
             for(let i=0;i<numbers.length;i++){
                 if(i===0){
                     total+=numbers[0];
@@ -76,22 +80,28 @@ function clickFunction(button){
             numbers.length=0;
             operators.length=0;
             lastoperator="";
-            lastbutton="";
             indvnumbers=total.toString();
             total=0;
         }
-        else if((button.innerText==="+"||button.innerText==="-"||button.innerText==="x"||button.innerText==="/")&&(lastbutton!="operator")){
-            operators.push(button.innerText);
-            numbers.push(parseInt(indvnumbers));
-            indvnumbers="";
-            lastbutton="operator";
-            lastoperator=button.innerText;
+        else if(button.innerText==="+"||button.innerText==="-"||button.innerText==="x"||button.innerText==="/"){
+            if(lastbutton!="operator"){
+                operators.push(button.innerText);
+                numbers.push(parseInt(indvnumbers));
+                lastbutton="operator";
+                lastoperator=button.innerText;
+                indvnumbers="";
+            }
         }
         else{
             indvnumbers+=button.innerText;
             lastbutton="";
+            lastoperator="";
             // numbers.push(parseInt(button.innerText));
         }
+        console.log("End Operator: "+operators);
+        console.log("end num: "+indvnumbers);
+        console.log("End numbers: "+numbers);
+        console.log("End lastbutton: "+lastbutton);
     }
 
 }
@@ -107,6 +117,8 @@ button7.onclick = ()=> clickFunction(button7);
 button8.onclick = ()=> clickFunction(button8);
 button9.onclick = ()=> clickFunction(button9);
 button0.onclick = ()=> clickFunction(button0);
+
+//keyboard functions
 document.addEventListener('keydown', function(event) {
     if(event.keyCode === 48) {
         clickFunction(button0);
@@ -157,6 +169,7 @@ document.addEventListener('keydown', function(event) {
         clickFunction("clear");
     }
 });
+
 
 //operator function calls
 plus.onclick = ()=> clickFunction(plus);
