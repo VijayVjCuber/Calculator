@@ -25,8 +25,8 @@ section{
     border: 2px solid black;
     box-shadow: 2px 2px 10px black;
     border-radius: 20px;
-    height: 80vh;
-    width: 48vw;
+    height: 90vh;
+    width: 55vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -40,8 +40,8 @@ section{
 
 #wrapper{
     display: grid;
-    grid-template-columns: repeat(4, 11vw);
-    grid-template-rows: repeat(4, 13vh);
+    grid-template-columns: repeat(4, 12vw);
+    grid-template-rows: repeat(4, 16vh);
     grid-gap: 10px;
 }
 
@@ -87,10 +87,10 @@ section{
 
 @media screen and (max-width: 900px){
     section{
-        width: 80vw;
+        width: 95vw;
     }
     #wrapper{
-        grid-template-columns: repeat(4, 17vw);
-        grid-template-rows: repeat(4, 15vh);
+        grid-template-columns: repeat(4, 20vw);
+        grid-template-rows: repeat(4, 13vh);
     }
 }
